@@ -3,13 +3,13 @@
         <h2>Вхід</h2>
 
         <span>e-mail</span>
-        <input type="text">
+        <input type="text" [(ngModel)]="userUserLoginInput">
 
         <span>Пароль</span>
-        <input type="text">
+        <input type="password" [(ngModel)]="userPasswordInput">
 
-        <button>Увійти</button>
+        <button (click)="login()">Увійти</button>
 
-        <p class="if_registered">Не зареєстровані?<a href="/register"> Зареєструйтесь</a></p>
+        <p class="if_registered">Не зареєстровані?<a routerLink="/register"> Зареєструйтесь</a></p>
     </div>
 </div>
