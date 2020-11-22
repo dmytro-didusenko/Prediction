@@ -1,21 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 
-export class UserData {
+export class TopicData {
     constructor(
-        public UserName: string,
-        public UserEMail: string,
-        public OrganizationName: string,
-        public UserPassword: string
+        public TopicName: string
     ) { }
 }
 
 @Component({
   selector: 'app-register-page',
-  templateUrl: './register-page.component.html',
-  styleUrls: ['./register-page.component.scss']
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.scss']
 })
-export class RegisterPageComponent {
+export class TopicComponent {
 
     constructor(public APIService: PredictionApiService) {
     }
@@ -27,11 +24,8 @@ export class RegisterPageComponent {
     passwordInput: string = '';
 
     register() {
-        const userToCreate: UserData = new UserData(
-            this.firstNameInput.trim() + ' ' + this.lastNameInput,
-            this.eMailInput,
-            this.organizationInput,
-            this.passwordInput);
+        const userToCreate: TopicData = new TopicData(
+            this.firstNameInput.trim() + ' ' + this.lastNameInput
 
         console.log(userToCreate); // TODO Remove after debug
 
