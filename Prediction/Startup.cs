@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.SwaggerUI;
 
 namespace Prediction
 {
@@ -58,6 +59,7 @@ namespace Prediction
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Prediction API V1");
+                c.DocExpansion(DocExpansion.None);
             });
 
             app.UseHttpsRedirection();
