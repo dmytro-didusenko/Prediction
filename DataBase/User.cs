@@ -10,6 +10,7 @@ namespace DataBase
         public string UserName { get; set; }
         [Required]
         public string UserEMail { get; set; }
+        public string OrganizationName { get; set; }
         [Required]
         public string UserPassword { get; set; }
     }
