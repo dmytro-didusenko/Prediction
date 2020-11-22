@@ -13,5 +13,6 @@ namespace DataBase
         public string OrganizationName { get; set; }
         [Required]
         public string UserPassword { get; set; }
+        public string Token { get; set; }
     }
 }

@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Prediction.TokenService;
 
 namespace Prediction.Controllers
 {
@@ -58,6 +59,9 @@ namespace Prediction.Controllers
         [HttpPost("User")]
         public async Task<ActionResult> AddUser([FromBody] User user)
         {
+            var createToken = new CreateToken();
+            user.Token = createToken.CreateNewToken();
+
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
