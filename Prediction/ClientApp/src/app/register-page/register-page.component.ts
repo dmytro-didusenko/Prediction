@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import {PredictionApiService} from '../../services/prediction-api.service';
 
 export class UserData {
     constructor(
-        public firstName: string,
-        public lastName: string,
-        public eMail: string,
-        public organization: string,
-        public password: string
+        public UserName: string,
+        public UserEMail: string,
+        public OrganizationName: string,
+        public UserPassword: string
     ) { }
 }
 
@@ -17,6 +17,9 @@ export class UserData {
 })
 export class RegisterPageComponent {
 
+    constructor(public APIService: PredictionApiService) {
+    }
+
     firstNameInput: string = '';
     lastNameInput: string = '';
     eMailInput: string = '';
@@ -25,13 +28,13 @@ export class RegisterPageComponent {
 
     register() {
         const userToCreate: UserData = new UserData(
-            this.firstNameInput,
-            this.lastNameInput,
+            this.firstNameInput.trim() + ' ' + this.lastNameInput,
             this.eMailInput,
             this.organizationInput,
             this.passwordInput);
 
-        console.log(userToCreate);
-    }
+        console.log(userToCreate); // TODO Remove after debug
 
+        this.APIService.AddUser(userToCreate).subscribe();
+    }
 }

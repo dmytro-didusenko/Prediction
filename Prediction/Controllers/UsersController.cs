@@ -56,7 +56,7 @@ namespace Prediction.Controllers
         /// <param name="user">Course to add</param>
         /// <returns>response status "Ok" and message</returns>
         [HttpPost("User")]
-        public async Task<ActionResult> PostCourse([FromBody] User user)
+        public async Task<ActionResult> AddUser([FromBody] User user)
         {
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
