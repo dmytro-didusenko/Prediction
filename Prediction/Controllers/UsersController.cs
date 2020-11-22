@@ -61,7 +61,7 @@ namespace Prediction.Controllers
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
-            return Ok($"Course with name \"{user.UserName}\" added");
+            return Ok($"User with name \"{user.UserName}\" added");
         }
 
 
