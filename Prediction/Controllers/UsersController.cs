@@ -1,13 +1,12 @@
 ﻿using DataBase;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Swashbuckle.AspNetCore.Annotations;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Prediction.TokenService;
+using Prediction.ViewModels;
 
 namespace Prediction.Controllers
 {
@@ -39,7 +38,7 @@ namespace Prediction.Controllers
         /// <param name="id">User Id</param>
         /// <returns>response status "OK" and User or status "NotFound" and error message</returns>
         [HttpGet("User/{userId}")]
-        public async Task<ActionResult> GetCourse(int userId)
+        public async Task<ActionResult> GetUser(int userId)
         {
             var user = await _context.Users.FindAsync(userId);
 
@@ -54,7 +53,7 @@ namespace Prediction.Controllers
         /// <summary>
         /// Add new User to DB
         /// </summary>
-        /// <param name="user">Course to add</param>
+        /// <param name="user">User to add</param>
         /// <returns>response status "Ok" and message</returns>
         [HttpPost("User")]
         public async Task<ActionResult> AddUser([FromBody] User user)
@@ -68,6 +67,25 @@ namespace Prediction.Controllers
             return Ok($"User with name \"{user.UserName}\" added");
         }
 
+        /// <summary>
+        /// Handle login data and returns user
+        /// </summary>
+        /// <param name="loginData">User login data</param>
+        /// <returns>response status "Ok" and user or status "BadRequest" with error message</returns>
+        [HttpPost("Login")]
+        public IActionResult UserLogin([FromBody] LoginData loginData)
+        {
+            User user = _context.Users.
+                Where(us => us.UserEMail.Equals(loginData.UserLogin) 
+                            && us.UserPassword.Equals(loginData.UserPassword))
+                .FirstOrDefault();
 
+            if (user != null)
+            {
+                return Ok(user);
+            }
+
+            return BadRequest("Can't find user with such login and password");
+        }
     }
 }
