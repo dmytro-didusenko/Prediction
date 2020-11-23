@@ -12,16 +12,16 @@ export class TopicService{
     getTopics(){
         return this.http.get(this.basicUrl + this.url);
     }
-    /*
-    createUser(topic: TopicData){
+
+    createTopic(topic: TopicData){
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
         return this.http.post(this.basicUrl + this.url, JSON.stringify(topic), {headers: myHeaders});
     }
-    updateUser(topic: TopicData) {
+    updateTopic(topic: TopicData) {
         const myHeaders = new HttpHeaders().set("Content-Type", "application/json");
-        return this.http.put(this.url, JSON.stringify(topic), {headers:myHeaders});
+        return this.http.put(this.basicUrl + this.url, JSON.stringify(topic), {headers:myHeaders});
     }
-     */
+
     deleteTopic(id: number){
         return this.http.delete(this.basicUrl + this.url + '/' + id);
     }

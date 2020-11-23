@@ -49,21 +49,15 @@ namespace Prediction.Controllers
         /// <summary>
         /// Change defined by Id Topic in DB
         /// </summary>
-        /// <param name="id">Topic Id</param>
-        /// <param name="course">Topic to update</param>
+        /// <param name="topic">Topic to update</param>
         /// <returns>response status "NoContent" or status "BadRequest" if no Topic Id to change in DB
         ///     and if Topic to change is null</returns>
-        [HttpPut("{id:int}")]
-        public async Task<IActionResult> PutTopic(int id, [FromBody] Topic topic)
+        [HttpPut]
+        public async Task<IActionResult> PutTopic([FromBody] Topic topic)
         {
             if (topic == null)
             {
                 return BadRequest($"Inputed Topic's data is null");
-            }
-
-            if (id != topic.TopicId)
-            {
-                return BadRequest($"Inputed Id={id} does not match Topic id={topic.TopicId}");
             }
 
             _context.Entry(topic).State = EntityState.Modified;
@@ -71,12 +65,13 @@ namespace Prediction.Controllers
             try
             {
                 await _context.SaveChangesAsync();
+                return Ok(topic);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TopicExists(id))
+                if (!TopicExists(topic.TopicId))
                 {
-                    return NotFound($"Could not found Topic with id={id}");
+                    return NotFound($"Could not found Topic with id={topic.TopicId}");
                 }
                 else
                 {
@@ -90,15 +85,15 @@ namespace Prediction.Controllers
         /// <summary>
         /// Add new Topic to DB
         /// </summary>
-        /// <param name="course">Topic to add</param>
+        /// <param name="topic">Topic to add</param>
         /// <returns>response status "Ok" and message</returns>
         [HttpPost]
-        public async Task<ActionResult> PostCourse([FromBody] Topic course)
+        public async Task<ActionResult> PostTopic([FromBody] Topic topic)
         {
-            _context.Topics.Add(course);
+            _context.Topics.Add(topic);
             await _context.SaveChangesAsync();
 
-            return Ok($"Topic with name \"{course.TopicName}\" added");
+            return Ok(topic);
         }
 
         // DELETE: api/Topics/5 - deletes Topic by Id
