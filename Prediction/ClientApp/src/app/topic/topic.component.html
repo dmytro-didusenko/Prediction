@@ -1,3 +1,56 @@
-<div>
-    Topic
-</div>
+<h1>Список тем</h1>
+<input type="button" value="Добавить" class="btn btn-default"  />
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <td>Тема</td>
+        <td></td>
+        <td></td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let topic of topics" >
+        <td>{{topic.topicName}}</td>
+        <td>
+            <input type="button" value="Изменить" class="btn btn-default"  />
+        </td>
+        <td>
+            <input type="button" value="Удалить"  class="btn btn-danger" (click) = "deleteTopic(topic.topicId)" />
+        </td>
+    </tr>
+    </tbody>
+</table>
+<div>{{statusMessage}}</div>
+
+
+<!--шаблон для чтения
+<ng-template #readOnlyTemplate let-user>
+    <td>{{user.id}}</td>
+    <td>{{user.name}}</td>
+    <td>{{user.age}}</td>
+    <td>
+        <input type="button" value="Изменить" class="btn btn-default" (click)="editUser(user)" />
+    </td>
+    <td>
+        <input type="button" value="Удалить" (click)="deleteUser(user)" class="btn btn-danger" />
+    </td>
+</ng-template>
+-->
+<!--шаблон для редактирования
+<ng-template #editTemplate>
+    <td>
+        <input type="number" [(ngModel)]="editedUser.id" readonly disabled class="form-control" />
+    </td>
+    <td>
+        <input type="text" [(ngModel)]="editedUser.name" class="form-control" />
+    </td>
+    <td>
+        <input type="number" [(ngModel)]="editedUser.age" class="form-control" />
+    </td>
+    <td>
+        <input type="button" value="Сохранить" (click)="saveUser()" class="btn btn-success" />
+    </td>
+    <td>
+        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
+    </td>
+</ng-template>-->

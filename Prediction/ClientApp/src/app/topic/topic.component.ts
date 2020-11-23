@@ -1,34 +1,44 @@
 import { Component, OnInit } from '@angular/core';
-import {PredictionApiService} from '../../services/prediction-api.service';
+import {TopicService} from "../../services/topic-api.service";
+import {TemplateRef, ViewChild} from '@angular/core';
+import {Observable} from 'rxjs';
 
 export class TopicData {
     constructor(
-        public TopicName: string
+        public TopicId: number,
+        public TopicName: string,
+        public UserId: number
     ) { }
 }
 
 @Component({
-  selector: 'app-register-page',
+  selector: 'app-topic-page',
   templateUrl: './topic.component.html',
-  styleUrls: ['./topic.component.scss']
+  styleUrls: ['./topic.component.scss'],
+    providers: [TopicService]
 })
-export class TopicComponent {
+export class TopicComponent implements OnInit {
 
-    constructor(public APIService: PredictionApiService) {
+    topics: Array<TopicData>;
+    statusMessage: string;
+
+    constructor(public APIService: TopicService) {
+        this.topics = new Array<TopicData>();
     }
 
-    firstNameInput: string = '';
-    lastNameInput: string = '';
-    eMailInput: string = '';
-    organizationInput: string = '';
-    passwordInput: string = '';
+    ngOnInit() {
+        this.loadTopics();
+    }
 
-    register() {
-        const userToCreate: TopicData = new TopicData(
-            this.firstNameInput.trim() + ' ' + this.lastNameInput
-
-        console.log(userToCreate); // TODO Remove after debug
-
-        this.APIService.AddUser(userToCreate).subscribe();
+    private loadTopics() {
+        this.APIService.getTopics().subscribe((data: TopicData[]) => {
+            this.topics = data;
+        });
+    }
+    public deleteTopic(id){
+        this.APIService.deleteTopic(id).subscribe(data => {
+            this.statusMessage = 'Данные успешно удалены',
+                this.loadTopics();
+        })
     }
 }

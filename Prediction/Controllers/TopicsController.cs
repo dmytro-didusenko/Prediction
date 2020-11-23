@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -41,7 +40,7 @@ namespace Prediction.Controllers
 
             if (topic == null)
             {
-                return NotFound($"Could not found Course with Id={id}");
+                return NotFound($"Could not found Topic with Id={id}");
             }
 
             return Ok(topic);
@@ -64,7 +63,7 @@ namespace Prediction.Controllers
 
             if (id != topic.TopicId)
             {
-                return BadRequest($"Inputed Id={id} does not match course id={topic.TopicId}");
+                return BadRequest($"Inputed Id={id} does not match Topic id={topic.TopicId}");
             }
 
             _context.Entry(topic).State = EntityState.Modified;
@@ -77,7 +76,7 @@ namespace Prediction.Controllers
             {
                 if (!TopicExists(id))
                 {
-                    return NotFound($"Could not found course with id={id}");
+                    return NotFound($"Could not found Topic with id={id}");
                 }
                 else
                 {
@@ -99,7 +98,7 @@ namespace Prediction.Controllers
             _context.Topics.Add(course);
             await _context.SaveChangesAsync();
 
-            return Ok($"Course with name \"{course.TopicName}\" added");
+            return Ok($"Topic with name \"{course.TopicName}\" added");
         }
 
         // DELETE: api/Topics/5 - deletes Topic by Id
@@ -116,13 +115,13 @@ namespace Prediction.Controllers
             var topic = await _context.Topics.FindAsync(id);
             if (topic == null)
             {
-                return NotFound($"Could not found Course with Id={id}");
+                return NotFound($"Could not found Topic with Id={id}");
             }
 
             _context.Topics.Remove(topic);
             await _context.SaveChangesAsync();
-
-            return Ok($"Course with name \"{topic.TopicName}\" deleted");
+        
+            return Ok();
         }
 
         /// <summary>
