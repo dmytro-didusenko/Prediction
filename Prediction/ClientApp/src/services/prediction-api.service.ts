@@ -95,6 +95,24 @@ export class PredictionApiService {
                 ));
     }
 
+    public GetPredictions(): Observable<Array<PredictionData>> {
+        // get API URL
+        const url: string = '/api/Predictions';
+
+        // call to API
+        let result: Array<PredictionData> = new Array<PredictionData>();
+        return this.http.get<Array<PredictionData>>(this.basicUrl + url, { observe: 'response' })
+            .pipe(
+                map(
+                    response => {
+                        result = response.body;
+                        return result;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
 
     public GetPredictionByTopic(topicId: number): Observable<Array<PredictionData>> {
         // get API URL

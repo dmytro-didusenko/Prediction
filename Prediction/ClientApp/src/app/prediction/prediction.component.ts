@@ -4,9 +4,9 @@ import {PredictionApiService} from '../../services/prediction-api.service';
 
 export class PredictionData {
     constructor(
-        public PredictionId: number = 0,
-        public PredictionContent: string,
-        public TopicId: number
+        public predictionId: number,
+        public predictionContent: string,
+        public topicId: number
     ) { }
 }
 
@@ -17,18 +17,20 @@ export class PredictionData {
 })
 export class PredictionComponent implements OnInit {
 
-    topics: TopicData[] = [];
-    topicToChange: TopicData;
-    predictionsByTopic: PredictionData[];
+    public topics: TopicData[] = [];
+    public predictionsFromDB: PredictionData[] = [];
+    public topicToChange: TopicData;
+    public predictionsByTopic: PredictionData[];
+    public predictionsGotFromServer: boolean;
+    public openAddPredictionInput = false;
 
-    predictionInput: string = '';
+    public predictionInput: string = '';
 
-    constructor(public APIService: PredictionApiService) {
-        this.predictionsByTopic = new Array<PredictionData>();
-    }
+    constructor(public APIService: PredictionApiService) { }
 
     ngOnInit() {
         this.GetTopics();
+        this.GetPredictions();
     }
 
     public GetTopics() {
@@ -38,12 +40,25 @@ export class PredictionComponent implements OnInit {
         });
     }
 
+    public GetPredictions() {
+        this.APIService.GetPredictions().subscribe(data => {
+            this.predictionsFromDB = data;
+            this.predictionsByTopic = data;
+            console.log(this.predictionsFromDB);
+        });
+    }
+
     public GetPredictionsByTopic(topicToChange: TopicData): void {
-        this.APIService.GetPredictionByTopic(topicToChange.topicId).subscribe(
-            data => {
-                this.predictionsByTopic = data;
-                console.log(this.predictionsByTopic);
-            });
+        this.predictionsByTopic = [];
+        for (const prediction of this.predictionsFromDB) {
+            if (prediction.topicId === topicToChange.topicId) {
+                this.predictionsByTopic.push(prediction);
+            }
+        }
+    }
+
+    public OpenAddPredictionInput(openAddPredictionInput: boolean): void {
+        this.openAddPredictionInput = !openAddPredictionInput;
     }
 
     public AddPrediction(topicId: number): void {
