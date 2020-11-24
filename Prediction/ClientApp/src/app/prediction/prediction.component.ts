@@ -19,11 +19,13 @@ export class PredictionComponent implements OnInit {
 
     topics: TopicData[] = [];
     topicToChange: TopicData;
-    predictionsByTopic: PredictionData[] = [];
+    predictionsByTopic: PredictionData[];
 
     predictionInput: string = '';
 
-    constructor(public APIService: PredictionApiService) { }
+    constructor(public APIService: PredictionApiService) {
+        this.predictionsByTopic = new Array<PredictionData>();
+    }
 
     ngOnInit() {
         this.GetTopics();
