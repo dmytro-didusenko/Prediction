@@ -1,0 +1,60 @@
+.topic_page_container {
+    justify-content: center;
+
+        h1 {
+            text-align: center;
+        }
+
+    input {
+        float: right;
+        width: 150px;
+        height: 40px;
+        border-radius: 4px;
+        border: 2px solid black;
+        box-sizing: border-box;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-bottom: 12px;
+    }
+
+        .add_button{
+            input {
+                background-color: lawngreen;
+                font-weight: bold;
+            }
+        }
+
+        .table_container{
+            width: 100%;
+            border: 1px solid black;
+
+            th {
+                font-size: 13px;
+                font-weight: normal;
+                background: #b9c9fe;
+                color: #039;
+                padding: 8px;
+            }
+
+            td {
+                width: 90%;
+                background: #e8edff;
+                //border-bottom: 1px solid #fff;
+                border-top: 2px solid white;
+                color: #669;
+                padding: 8px;
+                .change_button {
+                    background-color: yellow;
+                }
+                .delete_button {
+                    background-color: red;
+                }
+            }
+            tr:hover td {background: #ccddff;}
+            input{
+                width: 100%;
+            }
+        }
+
+
+}
