@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import {UserData} from '../app/register-page/register-page.component';
 import {LoginData} from '../app/login-page/login-page.component';
+import {TopicData} from '../app/topic/topic.component';
+import {PredictionData} from '../app/prediction/prediction.component';
 
 @Injectable({
     providedIn: 'root'
@@ -73,4 +75,62 @@ export class PredictionApiService {
     }
 
     //#endregion
+
+    public GetTopics(): Observable<Array<TopicData>> {
+        // API URL
+        const url: string = '/api/topics';
+
+        // call to API
+        let resultArray: Array<TopicData> = new Array<TopicData>();
+        return this.http.get<Array<TopicData>>(this.basicUrl + url, { observe: 'response' })
+            .pipe(
+                map(
+                    response => {
+                        resultArray = response.body;
+                        return resultArray;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
+
+
+    public GetPredictionByTopic(topicId: number): Observable<Array<PredictionData>> {
+        // get API URL
+        const url: string = `/api/Predictions/Topic/${topicId}/Predictions`;
+
+        // call to API
+        let result: Array<PredictionData> = new Array<PredictionData>();
+        return this.http.get<Array<PredictionData>>(this.basicUrl + url, { observe: 'response' })
+            .pipe(
+                map(
+                    response => {
+                        result = response.body;
+                        return result;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
+
+    public AddPrediction(predictionToAdd: PredictionData): Observable<any> {
+        // get API URL
+        const url: string = '/api/Predictions/Prediction';
+
+        // call to API
+        let result: any = null;
+        return this.http.post(this.basicUrl + url, predictionToAdd, { observe: 'response' })
+            .pipe(
+                map(
+                    response => {
+                        result = response.body;
+                        return result;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
 }

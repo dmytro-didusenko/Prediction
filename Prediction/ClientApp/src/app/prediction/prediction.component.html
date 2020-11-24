@@ -1,0 +1,27 @@
+<h1>Передбачення</h1>
+
+<p class="input_label">Оберіть тему передбачення або <a routerLink="/topic">створіть нову</a></p>
+
+<select name="businessCategories" [(ngModel)]="topicToChange" (ngModelChange)="GetPredictionsByTopic(topicToChange)">
+    <option selected></option>
+    <option *ngFor="let topic of topics" [ngValue]="topic">{{topic.topicName}}</option>
+</select>
+
+<div class="prediction_list">
+    <ul>
+        <li *ngFor="let predictionByTopic of predictionsByTopic">
+            <table>
+                <tr>
+                    <td>{{predictionByTopic.PredictionContent}}</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </li>
+    </ul>
+</div>
+
+<textarea placeholder="Введіть передбачення" [(ngModel)]="predictionInput"></textarea>
+
+<button (click)="AddPrediction(topicToChange.topicId)">Зберегти</button>
+

@@ -8,5 +8,6 @@ namespace DataBase
 
         public DbSet<User> Users { get; set; }
         public DbSet<Topic> Topics { get; set; }
+        public DbSet<PredictionItem> PredictionItems { get; set; }
     }
 }

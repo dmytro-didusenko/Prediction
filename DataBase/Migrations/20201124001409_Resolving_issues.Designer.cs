@@ -3,14 +3,16 @@ using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataBase.Migrations
 {
     [DbContext(typeof(PredictionContext))]
-    partial class PredictionContextModelSnapshot : ModelSnapshot
+    [Migration("20201124001409_Resolving_issues")]
+    partial class Resolving_issues
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,7 +20,7 @@ namespace DataBase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("DataBase.PredictionItem", b =>
+            modelBuilder.Entity("DataBase.Prediction", b =>
                 {
                     b.Property<int>("PredictionId")
                         .ValueGeneratedOnAdd()
@@ -34,7 +36,7 @@ namespace DataBase.Migrations
 
                     b.HasKey("PredictionId");
 
-                    b.ToTable("PredictionItems");
+                    b.ToTable("Predictions");
                 });
 
             modelBuilder.Entity("DataBase.Topic", b =>
