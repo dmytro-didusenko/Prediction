@@ -3,14 +3,16 @@ using DataBase;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataBase.Migrations
 {
     [DbContext(typeof(PredictionContext))]
-    partial class PredictionContextModelSnapshot : ModelSnapshot
+    [Migration("20201124001052_Added_Prediction_Entity")]
+    partial class Added_Prediction_Entity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -18,23 +20,23 @@ namespace DataBase.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.0");
 
-            modelBuilder.Entity("DataBase.PredictionItem", b =>
+            modelBuilder.Entity("DataBase.Prediction", b =>
                 {
                     b.Property<int>("PredictionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
+                    b.Property<int>("MyProperty")
+                        .HasColumnType("int");
+
                     b.Property<string>("PredictionContent")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TopicId")
-                        .HasColumnType("int");
-
                     b.HasKey("PredictionId");
 
-                    b.ToTable("PredictionItems");
+                    b.ToTable("Predictions");
                 });
 
             modelBuilder.Entity("DataBase.Topic", b =>

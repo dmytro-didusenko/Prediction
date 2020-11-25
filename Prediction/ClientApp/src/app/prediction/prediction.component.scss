@@ -1,0 +1,121 @@
+h1 {
+    margin-bottom: 45px;
+}
+
+.add_prediction_button {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+
+    button {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: limegreen;
+    }
+}
+
+select {
+    width: 100%;
+    height: 44px;
+    padding-left: 16px;
+    padding-right: 16px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    border-radius: 5px;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: center right 20px;
+    background-image: url("../../assets/svg/select_arrow_down.svg");
+
+    &:hover {
+        cursor: pointer;
+    }
+
+    &:focus {
+        border: 1px solid #3B8EE2;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.2);
+    }
+}
+
+.prediction_list {
+    margin-top: 45px;
+
+    ul {
+        list-style-type: none;
+        padding: 0;
+
+        li {
+            font-size: 20px;
+            //border-bottom: 1px solid lightslategray;
+            //border-top: 1px solid lightslategray;
+            height: 60px;
+
+
+            table {
+                width: 100%;
+
+                .prediction_column {
+                    width: 84%;
+                    font-style: italic;
+                }
+
+                .edit_button_column {
+                    width: 8%;
+
+                    .edit_button {
+                        width: 90px;
+                        height: 30px;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                        font-size: 16px;
+                        font-weight: normal;
+                        background-color: gray;
+                        text-transform: none;
+                    }
+                }
+
+                .delete_button_column {
+                    width: 8%;
+
+                    .delete_button {
+                        width: 90px;
+                        height: 30px;
+                        margin-top: 5px;
+                        margin-bottom: 5px;
+                        font-size: 16px;
+                        font-weight: normal;
+                        background-color: red;
+                        text-transform: none;
+                    }
+                }
+            }
+        }
+    }
+
+}
+
+textarea {
+    width: 100%;
+    height: 180px;
+    margin-top: 70px;
+    padding: 9px 16px;
+    box-sizing: border-box;
+    border: 1px solid grey;
+    border-radius: 5px;
+    resize: none;
+    font-size: 20px
+}
+
+button {
+    width: 250px;
+    height: 50px;
+    margin-top: 20px;
+    margin-bottom: 75px;
+    border-radius: 5px;
+    background-color: #3B8EE2;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
