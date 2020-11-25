@@ -73,10 +73,6 @@ namespace Prediction.Controllers
                 {
                     return NotFound($"Could not found Topic with id={topic.TopicId}");
                 }
-                else
-                {
-                    throw;
-                }
             }
 
             return NoContent();

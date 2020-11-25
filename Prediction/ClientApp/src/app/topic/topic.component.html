@@ -1,45 +1,47 @@
-<h1>Список тем</h1>
-<input type="button" value="Добавить" (click)="addTopic()" class="btn btn-default"   />
-<table class="table table-striped">
-    <thead>
-    <tr>
-        <td>Тема</td>
-        <td></td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let topic of topics" >
-        <ng-template [ngTemplateOutlet]="loadTemplate(topic)"
-                     [ngTemplateOutletContext]="{ $implicit: topic}">
-        </ng-template>
-    </tr>
-    </tbody>
-</table>
-<div>{{statusMessage}}</div>
+<div class="topic_page_container">
+    <h1>Список тем</h1>
+    <div class="add_button">
+        <input type="button" value="Додати" (click)="addTopic()" />
+    </div>
+    <table class="table_container">
+        <thead>
+        <tr>
+            <th>Тема</th>
+            <th></th>
+            <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let topic of topics" >
+            <ng-template [ngTemplateOutlet]="loadTemplate(topic)"
+                        [ngTemplateOutletContext]="{ $implicit: topic}">
+            </ng-template>
+        </tr>
+        </tbody>
+    </table>
+    <div>{{statusMessage}}</div>
 
+    <ng-template #readOnlyTemplate let-topic>
+            <td>{{topic.topicName}}</td>
 
-<!--шаблон для чтения-->
-<ng-template #readOnlyTemplate let-topic>
-        <td>{{topic.topicName}}</td>
+        <td>
+            <input type="button" value="Змінити"  (click)="editTopic(topic)" class="change_button" />
+        </td>
+        <td>
+            <input type="button" value="Видалити"  (click) = "deleteTopic(topic.topicId)" class="delete_button" />
+        </td>
+    </ng-template>
 
-    <td>
-        <input type="button" value="Изменить" class="btn btn-default" (click)="editTopic(topic)" />
-    </td>
-    <td>
-        <input type="button" value="Удалить"  class="btn btn-danger" (click) = "deleteTopic(topic.topicId)" />
-    </td>
-</ng-template>
-
-<!--шаблон для редактирования-->
-<ng-template #editTemplate>
-    <td>
-        <input type="text" [(ngModel)]="editedTopic.topicName" class="form-control" />
-    </td>
-    <td>
-        <input type="button" value="Отмена" (click)="cancel()" class="btn btn-warning" />
-    </td>
-    <td>
-        <input type="button" value="Сохранить" (click)="saveTopic()" class="btn btn-success" />
-    </td>
-</ng-template>
+    <!--шаблон для редактирования-->
+    <ng-template #editTemplate>
+        <td>
+            <input type="text" [(ngModel)]="editedTopic.topicName" class="form-control" />
+        </td>
+        <td>
+            <input type="button" value="Отмена" (click)="cancel()" />
+        </td>
+        <td>
+            <input type="button" value="Сохранить" (click)="saveTopic()"  />
+        </td>
+    </ng-template>
+</div>
