@@ -151,4 +151,23 @@ export class PredictionApiService {
                     }
                 ));
     }
+
+    public DeletePrediction(predictionId: number): Observable<boolean> {
+        // get API URL
+        const url: string = `/api/Predictions/Delete/${predictionId}`;
+
+        // call to API
+        let deleteResult: any = false;
+        return this.http.delete(this.basicUrl + url, { observe: 'response' })
+            .pipe(
+                map(
+                    response => {
+                        deleteResult = response.body;
+                        return deleteResult;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
 }

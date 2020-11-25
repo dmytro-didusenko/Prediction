@@ -68,6 +68,15 @@ export class PredictionComponent implements OnInit {
             topicId
         );
 
-        this.APIService.AddPrediction(predictionToAdd).subscribe();
+        this.APIService.AddPrediction(predictionToAdd).subscribe( data => {
+            this.GetPredictions();
+            this.predictionInput = '';
+        });
+    }
+
+    public deletePrediction(predictionId: number): void {
+        this.APIService.DeletePrediction(predictionId).subscribe( data => {
+            this.GetPredictions();
+        });
     }
 }

@@ -70,7 +70,27 @@ namespace Prediction.Controllers
             _context.PredictionItems.Add(prediction);
             await _context.SaveChangesAsync();
 
-            return Ok($"Prediction added");
+            return Ok();
+        }
+
+        /// <summary>
+        /// Delete Prediction by Id from DB
+        /// </summary>
+        /// <param name="predictionId">Prediction Id to delete</param>
+        /// <returns>response status "Ok" and message or status "NotFound" and error message</returns>
+        [HttpDelete("Delete/{predictionId}")]
+        public async Task<ActionResult> DeletePrediction(int predictionId)
+        {
+            PredictionItem prediction = await _context.PredictionItems.FindAsync(predictionId);
+            if (prediction == null)
+            {
+                return NotFound($"Could not found Prediction with Id {predictionId}");
+            }
+
+            _context.PredictionItems.Remove(prediction);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
     }
 }
