@@ -1,4 +1,7 @@
 <div class="user_page_container">
+    <div class="logo_container">
+        <img src="../../assets/images/prediction.png" alt="">
+    </div>
     <select name="businessCategories" [(ngModel)]="topicToChange" (ngModelChange)="GetPredictionsByTopic(topicToChange)">
         <option selected [ngValue]=""></option>
         <option *ngFor="let topic of topics" [ngValue]="topic">{{topic.topicName}}</option>
