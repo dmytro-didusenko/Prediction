@@ -1,5 +1,6 @@
 <header>
-  <nav
+    <app-topic-page (isUser)="isUser($event)" style="display: none" ></app-topic-page>
+  <nav *ngIf="isLogin"
     class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
   >
     <div class="container">
@@ -36,12 +37,8 @@
               >Fetch data</a>
           </li>
             <li class="nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/register']"
-                >Register</a>
-            </li>
-            <li class="nav-item" [routerLinkActive]="['link-active']">
-                <a class="nav-link text-dark" [routerLink]="['/login']"
-                >LogIn</a>
+                <a class="nav-link text-dark" (click)="logout()"
+                >Вийти</a>
             </li>
         </ul>
       </div>
