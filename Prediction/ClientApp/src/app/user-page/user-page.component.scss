@@ -1,0 +1,6 @@
+@import '../../scss/common';
+
+select {
+    @extend .select_basic;
+    background-image: url("../../assets/svg/select_arrow_down.svg");
+}

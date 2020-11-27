@@ -1,14 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {TopicData} from '../topic/topic.component';
 import {PredictionApiService} from '../../services/prediction-api.service';
-
-export class PredictionData {
-    constructor(
-        public predictionId: number,
-        public predictionContent: string,
-        public topicId: number
-    ) { }
-}
+import {PredictionData} from '../../models/prediction-data';
+import {TopicData} from '../../models/topic-data';
 
 @Component({
     selector: 'app-prediction',

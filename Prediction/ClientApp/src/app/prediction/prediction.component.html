@@ -1,7 +1,7 @@
 <h1>Передбачення</h1>
 
-<div class="add_prediction_button">
-    <button  (click)="OpenAddPredictionInput(openAddPredictionInput)">Додати передбачення</button>
+<div class="add_prediction_button_container">
+    <button class="add_prediction_button" (click)="OpenAddPredictionInput(openAddPredictionInput)">Додати передбачення</button>
 </div>
 
 <p class="input_label">Оберіть тему передбачення або <a routerLink="/topic">створіть нову</a></p>
@@ -18,7 +18,11 @@
                 <tr>
                     <td class="prediction_column">{{predictionByTopic.predictionContent}}</td>
                     <td class="edit_button_column"><button class="edit_button">Змінити</button></td>
-                    <td class="delete_button_column"><button class="delete_button" (click)="deletePrediction(predictionByTopic.predictionId)">Видалити</button></td>
+                    <td class="delete_button_column">
+                        <button class="delete_button" (click)="deletePrediction(predictionByTopic.predictionId)">
+                            Видалити
+                        </button>
+                    </td>
                 </tr>
             </table>
         </li>
@@ -29,6 +33,6 @@
 
     <textarea placeholder="Введіть передбачення" [(ngModel)]="predictionInput"></textarea>
 
-    <button (click)="AddPrediction(topicToChange.topicId)">Зберегти</button>
+    <button class="save_prediction_button" (click)="AddPrediction(topicToChange.topicId)">Зберегти</button>
 
 </div>

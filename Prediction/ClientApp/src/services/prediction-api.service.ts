@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import {UserData} from '../app/register-page/register-page.component';
-import {LoginData} from '../app/login-page/login-page.component';
-import {TopicData} from '../app/topic/topic.component';
-import {PredictionData} from '../app/prediction/prediction.component';
+import {TopicData} from '../models/topic-data';
+import {PredictionData} from '../models/prediction-data';
+import {UserData} from '../models/user-data';
+import {LoginData} from '../models/login-data';
 
 @Injectable({
     providedIn: 'root'
@@ -95,6 +95,8 @@ export class PredictionApiService {
                 ));
     }
 
+    //#region Prediction routes
+
     public GetPredictions(): Observable<Array<PredictionData>> {
         // get API URL
         const url: string = '/api/Predictions';
@@ -170,4 +172,25 @@ export class PredictionApiService {
                     }
                 ));
     }
+
+    public GetRandomPrediction(userToken: string, topicName: string): Observable<PredictionData> {
+        // get API URL
+        const url: string = `/api/Predictions/Random/User/${userToken}/Topic/${topicName}`;
+
+        // call to API
+        let result: any = null;
+        return this.http.get(this.basicUrl + url, {observe: 'response'})
+            .pipe(
+                map(
+                    response => {
+                        result = result.body;
+                        return result;
+                    },
+                    error => {
+                        return new Error(error);
+                    }
+                ));
+    }
+
+    //#endregion
 }

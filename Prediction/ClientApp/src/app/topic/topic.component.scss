@@ -1,60 +1,93 @@
+@import '../../scss/common';
+
 .topic_page_container {
-    justify-content: center;
 
-        h1 {
-            text-align: center;
-        }
-
-    input {
-        float: right;
-        width: 150px;
-        height: 40px;
-        border-radius: 4px;
-        border: 2px solid black;
-        box-sizing: border-box;
-        padding-left: 10px;
-        padding-right: 10px;
-        margin-bottom: 12px;
+    h1 {
+        margin-top: 25px;
+        margin-bottom: 45px;
     }
 
-        .add_button{
-            input {
-                background-color: lawngreen;
-                font-weight: bold;
+    .add_topic_button_container {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        .add_topic_button {
+            @extend .add_item_button;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+    }
+
+    .topic_list {
+        margin-top: 45px;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+
+            li {
+                font-size: 20px;
+                height: 50px;
+
+                :hover {
+                    background-color: #ececec;
+                }
+
+                table {
+                    width: 100%;
+                    border: 10px;
+
+                    .topic_column {
+                        width: 84%;
+                        font-style: italic;
+
+                        input {
+                            width: 90%;
+                            height: 35px;
+                            border-radius: 4px;
+                        }
+                    }
+
+                    .edit_button_column {
+                        width: 8%;
+
+                        .edit_button {
+                            @extend .content_manage_button;
+                            background-color: #3B8EE2;
+                        }
+                    }
+
+                    .cancel_button_column {
+                        width: 8%;
+
+                        .cancel_button {
+                            @extend .content_manage_button;
+                            background-color: #FFFFFF;
+                            border: 1px solid #808080;
+                            color: #808080;
+                        }
+                    }
+
+                    .delete_button_column {
+                        width: 8%;
+
+                        .delete_button {
+                            @extend .content_manage_button;
+                            background-color: #f44336;
+                        }
+                    }
+
+                    .save_button_column {
+                        width: 8%;
+
+                        .save_button {
+                            @extend .content_manage_button;
+                            background-color: #5cb85c;
+                        }
+                    }
+                }
             }
         }
-
-        .table_container{
-            width: 100%;
-            border: 1px solid black;
-
-            th {
-                font-size: 13px;
-                font-weight: normal;
-                background: #b9c9fe;
-                color: #039;
-                padding: 8px;
-            }
-
-            td {
-                width: 90%;
-                background: #e8edff;
-                //border-bottom: 1px solid #fff;
-                border-top: 2px solid white;
-                color: #669;
-                padding: 8px;
-                .change_button {
-                    background-color: yellow;
-                }
-                .delete_button {
-                    background-color: red;
-                }
-            }
-            tr:hover td {background: #ccddff;}
-            input{
-                width: 100%;
-            }
-        }
-
-
+    }
 }

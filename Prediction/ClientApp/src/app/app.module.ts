@@ -11,6 +11,7 @@ import { TopicComponent } from './topic/topic.component';
 import { RegisterPageComponent } from './register-page/register-page.component';
 import { LoginPageComponent } from './login-page/login-page.component';
 import { PredictionComponent } from './prediction/prediction.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { PredictionComponent } from './prediction/prediction.component';
     RegisterPageComponent,
     LoginPageComponent,
     PredictionComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -28,6 +30,7 @@ import { PredictionComponent } from './prediction/prediction.component';
     FormsModule,
     RouterModule.forRoot([
         { path: '', component: HomeComponent, pathMatch: 'full' },
+        { path: 'user_page', component: UserPageComponent },
         { path: 'topic', component: TopicComponent },
         { path: 'prediction', component: PredictionComponent },
         { path: 'register', component: RegisterPageComponent },

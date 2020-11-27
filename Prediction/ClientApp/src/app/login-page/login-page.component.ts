@@ -1,13 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
-import {UserData} from '../register-page/register-page.component';
-
-export class LoginData {
-    constructor(
-        public UserLogin: string,
-        public UserPassword: string
-    ) { }
-}
+import {LoginData} from '../../models/login-data';
+import {UserData} from '../../models/user-data';
 
 @Component({
   selector: 'app-login-page',

@@ -1,0 +1,6 @@
+<div class="user_page_container">
+    <select name="businessCategories" [(ngModel)]="topicToChange" (ngModelChange)="GetPredictionsByTopic(topicToChange)">
+        <option selected [ngValue]=""></option>
+        <option *ngFor="let topic of topics" [ngValue]="topic">{{topic.topicName}}</option>
+    </select>
+</div>
