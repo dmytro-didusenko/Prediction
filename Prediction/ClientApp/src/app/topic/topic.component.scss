@@ -1,4 +1,5 @@
 @import '../../scss/common';
+@import '../../scss/colors';
 
 .topic_page_container {
 
@@ -31,7 +32,7 @@
                 height: 50px;
 
                 :hover {
-                    background-color: #ececec;
+                    background-color: $color_light_grey;
                 }
 
                 table {
@@ -54,7 +55,7 @@
 
                         .edit_button {
                             @extend .content_manage_button;
-                            background-color: #3B8EE2;
+                            background-color: $color_blue;
                         }
                     }
 
@@ -63,9 +64,9 @@
 
                         .cancel_button {
                             @extend .content_manage_button;
-                            background-color: #FFFFFF;
-                            border: 1px solid #808080;
-                            color: #808080;
+                            background-color: $color_white;
+                            border: 1px solid $color_grey;
+                            color: $color_grey;
                         }
                     }
 
@@ -74,7 +75,7 @@
 
                         .delete_button {
                             @extend .content_manage_button;
-                            background-color: #f44336;
+                            background-color: $color_red;
                         }
                     }
 
@@ -83,7 +84,7 @@
 
                         .save_button {
                             @extend .content_manage_button;
-                            background-color: #5cb85c;
+                            background-color: $color_green;
                         }
                     }
                 }

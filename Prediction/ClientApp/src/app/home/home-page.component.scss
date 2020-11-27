@@ -1,4 +1,5 @@
 @import '../../scss/common';
+@import '../../scss/colors';
 
 .home_container {
     background-image: url("../../assets/images/Prediction2.jpg");
@@ -17,12 +18,12 @@
         margin-top: 20px;
         width: 200px;
         height: 40px;
-        background-color: #3B8EE2;
-        color: #FFFFFF;
+        background-color: $color_blue;
+        color: $color_white;
     }
 
     a:link {
-        color: green;
+        color: $color_green;
         background-color: transparent;
         text-decoration: none;
     }

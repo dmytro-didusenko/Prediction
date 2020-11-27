@@ -26,7 +26,7 @@ select {
     }
 
     &:focus {
-        border: 1px solid #3B8EE2;
+        border: 1px solid $color_blue;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14), 0 3px 4px rgba(0, 0, 0, 0.12), 0 1px 5px rgba(0, 0, 0, 0.2);
     }
 }
@@ -43,7 +43,7 @@ select {
             height: 50px;
 
             :hover {
-                background-color: #ececec;
+                background-color: $color_light_grey;
             }
 
             table {
@@ -59,7 +59,7 @@ select {
 
                     .edit_button {
                         @extend .content_manage_button;
-                        background-color: #3B8EE2;
+                        background-color: $color_blue;
                     }
                 }
 
@@ -68,7 +68,7 @@ select {
 
                     .delete_button {
                         @extend .content_manage_button;
-                        background-color: #f44336;
+                        background-color: $color_red;
                     }
                 }
             }
@@ -87,6 +87,6 @@ textarea {
     @extend .add_item_button;
     margin-top: 20px;
     margin-bottom: 75px;
-    background-color: #3B8EE2;
+    background-color: $color_blue;
 
 }
