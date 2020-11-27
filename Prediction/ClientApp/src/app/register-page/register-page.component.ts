@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 import {UserData} from '../../models/user-data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
@@ -9,7 +10,7 @@ import {UserData} from '../../models/user-data';
 })
 export class RegisterPageComponent {
 
-    constructor(public APIService: PredictionApiService) {
+    constructor(public APIService: PredictionApiService, private router: Router) {
     }
 
     firstNameInput: string = '';
@@ -17,6 +18,7 @@ export class RegisterPageComponent {
     eMailInput: string = '';
     organizationInput: string = '';
     passwordInput: string = '';
+    errorMessage: string = '';
 
     register() {
         const userToCreate: UserData = new UserData(
@@ -25,8 +27,7 @@ export class RegisterPageComponent {
             this.organizationInput,
             this.passwordInput);
 
-        console.log(userToCreate); // TODO Remove after debug
-
         this.APIService.AddUser(userToCreate).subscribe();
+        this.router.navigate(['/login']);
     }
 }

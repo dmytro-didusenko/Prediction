@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, Input } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 import {TopicData} from '../../models/topic-data';
 import {PredictionData} from '../../models/prediction-data';
@@ -14,11 +14,13 @@ export class UserPageComponent implements OnInit {
     public topics: TopicData[] = [];
     public topicToChange: TopicData;
     public predictionByTopic: PredictionData;
+    public currentUser: any;
 
     constructor(public APIService: PredictionApiService) { }
 
     ngOnInit() {
         this.GetTopics();
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
     }
 
     public GetTopics() {

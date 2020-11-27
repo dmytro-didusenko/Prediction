@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 import {LoginData} from '../../models/login-data';
 import {UserData} from '../../models/user-data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -12,8 +13,9 @@ export class LoginPageComponent {
 
     userUserLoginInput: string = '';
     userPasswordInput: string = '';
+    error: boolean = false;
 
-    constructor(public APIService: PredictionApiService) { }
+    constructor(public APIService: PredictionApiService, private router: Router) { }
 
     login(): void {
         const userLogin: LoginData = new LoginData(
@@ -25,7 +27,12 @@ export class LoginPageComponent {
 
         this.APIService.UserLogin(userLogin).subscribe(response => {
             user = response;
-            console.log(user);
-        });
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            this.router.navigate(['/user_page']);
+        },
+        error => {
+            localStorage.removeItem("currentUser");
+            this.error = true;
+            });
     }
 }
