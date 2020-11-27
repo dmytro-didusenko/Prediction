@@ -8,10 +8,11 @@ import {Router} from '@angular/router';
 })
 export class NavMenuComponent implements OnInit{
     isExpanded = false;
-    isLogin = false;
+    isLogin: boolean;
     currentUser: any = null;
 
-    constructor(private router: Router){}
+    constructor(private router: Router){
+    }
 
     ngOnInit(): void {
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
@@ -20,14 +21,16 @@ export class NavMenuComponent implements OnInit{
         }else {
             this.isLogin = true;
         }
+
     }
 
-    isUser(isUser:boolean) {
-        this.isLogin = isUser;
-    }
-
-    ngOnChanges(changes: boolean) {
-        this.isLogin;
+    ngDoCheck() {
+        if(!this.isLogin){
+            this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+            if(this.currentUser != null){
+                this.isLogin = true;
+            }
+        }
     }
 
     collapse() {
@@ -41,5 +44,7 @@ export class NavMenuComponent implements OnInit{
     logout(): void{
         localStorage.removeItem("currentUser");
         this.isLogin = false;
+        this.router.navigate(['/']);
     }
+
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 import {LoginData} from '../../models/login-data';
 import {UserData} from '../../models/user-data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
@@ -27,7 +28,7 @@ export class LoginPageComponent {
         this.APIService.UserLogin(userLogin).subscribe(response => {
             user = response;
             localStorage.setItem("currentUser", JSON.stringify(user));
-            this.router.navigate(['/topic']);
+            this.router.navigate(['/user_page']);
         },
         error => {
             localStorage.removeItem("currentUser");

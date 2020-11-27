@@ -14,10 +14,7 @@ export class TopicComponent implements OnInit {
 
     @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>;
     @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>;
-    @Output() isUser = new EventEmitter<boolean>();
-    checkUser(isUser:boolean) {
-        this.isUser.emit(isUser);
-    }
+
 
     editedTopic: TopicData;
     topics: Array<TopicData>;
@@ -32,7 +29,6 @@ export class TopicComponent implements OnInit {
     ngOnInit() {
         this.loadTopics();
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
-        this.currentUser === null ? this.checkUser(false) : this.checkUser(true);
     }
 
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {PredictionApiService} from '../../services/prediction-api.service';
 import {UserData} from '../../models/user-data';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register-page',
