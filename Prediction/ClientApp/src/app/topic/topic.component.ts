@@ -46,13 +46,13 @@ export class TopicComponent implements OnInit {
     }
 
     addTopic() {
-        this.editedTopic = new TopicData(0,"",this.currentUser.userID);
+        this.editedTopic = new TopicData(0,"",this.currentUser.userID, this.currentUser.token);
         this.topics.push(this.editedTopic);
         this.isNewRecord = true;
     }
 
     editTopic(topic: TopicData) {
-        this.editedTopic = new TopicData(topic.topicId, topic.topicName, topic.userId);
+        this.editedTopic = new TopicData(topic.topicId, topic.topicName, topic.userId, topic.userToken);
     }
 
     loadTemplate(topic: TopicData) {
