@@ -7,9 +7,11 @@
 
         <span>Пароль</span>
         <input type="password" [(ngModel)]="userPasswordInput">
-
+        <div class="if_error" *ngIf="error">Невірний логін або пароль</div>
         <button (click)="login()">Увійти</button>
 
         <p class="if_registered">Не зареєстровані?<a routerLink="/register"> Зареєструйтесь</a></p>
+
     </div>
+
 </div>

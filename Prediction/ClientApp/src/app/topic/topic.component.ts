@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {TopicService} from '../../services/topic-api.service';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import {TopicService} from "../../services/topic-api.service";
 import {TemplateRef, ViewChild} from '@angular/core';
 import {Observable} from 'rxjs';
 import {TopicData} from '../../models/topic-data';
@@ -14,11 +14,16 @@ export class TopicComponent implements OnInit {
 
     @ViewChild('readOnlyTemplate', {static: false}) readOnlyTemplate: TemplateRef<any>;
     @ViewChild('editTemplate', {static: false}) editTemplate: TemplateRef<any>;
+    @Output() isUser = new EventEmitter<boolean>();
+    checkUser(isUser:boolean) {
+        this.isUser.emit(isUser);
+    }
 
     editedTopic: TopicData;
     topics: Array<TopicData>;
     statusMessage: string;
     isNewRecord: boolean;
+    currentUser: any;
 
     constructor(public APIService: TopicService) {
         this.topics = new Array<TopicData>();
@@ -26,7 +31,10 @@ export class TopicComponent implements OnInit {
 
     ngOnInit() {
         this.loadTopics();
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.currentUser === null ? this.checkUser(false) : this.checkUser(true);
     }
+
 
     private loadTopics() {
         this.APIService.getTopics().subscribe((data: TopicData[]) => {
@@ -42,7 +50,7 @@ export class TopicComponent implements OnInit {
     }
 
     addTopic() {
-        this.editedTopic = new TopicData(0,"",1);
+        this.editedTopic = new TopicData(0,"",this.currentUser.userID);
         this.topics.push(this.editedTopic);
         this.isNewRecord = true;
     }

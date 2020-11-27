@@ -12,8 +12,9 @@ export class LoginPageComponent {
 
     userUserLoginInput: string = '';
     userPasswordInput: string = '';
+    error: boolean = false;
 
-    constructor(public APIService: PredictionApiService) { }
+    constructor(public APIService: PredictionApiService, private router: Router) { }
 
     login(): void {
         const userLogin: LoginData = new LoginData(
@@ -25,7 +26,12 @@ export class LoginPageComponent {
 
         this.APIService.UserLogin(userLogin).subscribe(response => {
             user = response;
-            console.log(user);
-        });
+            localStorage.setItem("currentUser", JSON.stringify(user));
+            this.router.navigate(['/topic']);
+        },
+        error => {
+            localStorage.removeItem("currentUser");
+            this.error = true;
+            });
     }
 }
