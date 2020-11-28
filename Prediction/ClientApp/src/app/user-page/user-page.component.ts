@@ -19,14 +19,14 @@ export class UserPageComponent implements OnInit {
     constructor(public APIService: PredictionApiService) { }
 
     ngOnInit() {
-        this.GetTopics();
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.GetTopics();
     }
 
     public GetTopics() {
         this.APIService.GetTopics().subscribe(data => {
-            this.topics = data;
-            console.log(this.topics);
+            this.topics = data.filter(topic => topic.userToken === this.currentUser.token);
+            //console.log(this.topics);
         });
     }
 

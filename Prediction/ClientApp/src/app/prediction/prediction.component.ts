@@ -18,18 +18,20 @@ export class PredictionComponent implements OnInit {
     public openAddPredictionInput = false;
 
     public predictionInput: string = '';
+    public currentUser: any;
 
     constructor(public APIService: PredictionApiService) { }
 
     ngOnInit() {
+        this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
         this.GetTopics();
         this.GetPredictions();
     }
 
     public GetTopics() {
         this.APIService.GetTopics().subscribe(data => {
-            this.topics = data;
-            console.log(this.topics);
+            this.topics = data.filter(topic => topic.userToken === this.currentUser.token);
+            //console.log(this.topics);
         });
     }
 

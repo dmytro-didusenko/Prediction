@@ -27,14 +27,14 @@ export class TopicComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.loadTopics();
         this.currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        this.loadTopics();
     }
 
 
     private loadTopics() {
         this.APIService.getTopics().subscribe((data: TopicData[]) => {
-            this.topics = data;
+            this.topics = data.filter(topic => topic.userToken === this.currentUser.token);
         });
     }
 

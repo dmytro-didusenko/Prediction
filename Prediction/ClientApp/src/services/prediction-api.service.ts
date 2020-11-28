@@ -6,12 +6,13 @@ import {TopicData} from '../models/topic-data';
 import {PredictionData} from '../models/prediction-data';
 import {UserData} from '../models/user-data';
 import {LoginData} from '../models/login-data';
+import {basicUrl} from "./basicUrl";
 
 @Injectable({
     providedIn: 'root'
 })
 export class PredictionApiService {
-    private basicUrl: string = 'https://localhost:5001';
+    //private basicUrl: string = 'https://localhost:5001';
 
     constructor(private http: HttpClient) { }
 
@@ -23,7 +24,7 @@ export class PredictionApiService {
 
         // call to API
         let resultArray: Array<UserData> = new Array<UserData>();
-        return this.http.get<Array<UserData>>(this.basicUrl + url, { observe: 'response' })
+        return this.http.get<Array<UserData>>(basicUrl.apiUrl + url, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -42,7 +43,7 @@ export class PredictionApiService {
 
         // call to API
         let result: any = null;
-        return this.http.post(this.basicUrl + url, userToAdd, { observe: 'response' })
+        return this.http.post(basicUrl.apiUrl + url, userToAdd, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -61,7 +62,7 @@ export class PredictionApiService {
 
         // call to API
         let result: any = null;
-        return this.http.post(this.basicUrl + url, userToLogin, { observe: 'response' })
+        return this.http.post(basicUrl.apiUrl + url, userToLogin, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -82,7 +83,7 @@ export class PredictionApiService {
 
         // call to API
         let resultArray: Array<TopicData> = new Array<TopicData>();
-        return this.http.get<Array<TopicData>>(this.basicUrl + url, { observe: 'response' })
+        return this.http.get<Array<TopicData>>(basicUrl.apiUrl + url, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -103,7 +104,7 @@ export class PredictionApiService {
 
         // call to API
         let result: Array<PredictionData> = new Array<PredictionData>();
-        return this.http.get<Array<PredictionData>>(this.basicUrl + url, { observe: 'response' })
+        return this.http.get<Array<PredictionData>>(basicUrl.apiUrl + url, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -122,7 +123,7 @@ export class PredictionApiService {
 
         // call to API
         let result: Array<PredictionData> = new Array<PredictionData>();
-        return this.http.get<Array<PredictionData>>(this.basicUrl + url, { observe: 'response' })
+        return this.http.get<Array<PredictionData>>(basicUrl.apiUrl + url, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -141,7 +142,7 @@ export class PredictionApiService {
 
         // call to API
         let result: any = null;
-        return this.http.post(this.basicUrl + url, predictionToAdd, { observe: 'response' })
+        return this.http.post(basicUrl.apiUrl + url, predictionToAdd, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -160,7 +161,7 @@ export class PredictionApiService {
 
         // call to API
         let deleteResult: any = false;
-        return this.http.delete(this.basicUrl + url, { observe: 'response' })
+        return this.http.delete(basicUrl.apiUrl + url, { observe: 'response' })
             .pipe(
                 map(
                     response => {
@@ -179,7 +180,7 @@ export class PredictionApiService {
 
         // call to API
         let result: any = null;
-        return this.http.get(this.basicUrl + url, {observe: 'response'})
+        return this.http.get(basicUrl.apiUrl + url, {observe: 'response'})
             .pipe(
                 map(
                     response => {
