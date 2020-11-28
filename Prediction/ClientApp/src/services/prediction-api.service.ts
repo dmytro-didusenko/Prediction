@@ -6,7 +6,7 @@ import {TopicData} from '../models/topic-data';
 import {PredictionData} from '../models/prediction-data';
 import {UserData} from '../models/user-data';
 import {LoginData} from '../models/login-data';
-import {basicUrl} from "./basicUrl";
+import {basicUrl} from './basicUrl';
 
 @Injectable({
     providedIn: 'root'
@@ -176,7 +176,7 @@ export class PredictionApiService {
 
     public GetRandomPrediction(userToken: string, topicName: string): Observable<PredictionData> {
         // get API URL
-        const url: string = `/api/Predictions/Random/User/${userToken}/Topic/${topicName}`;
+        const url: string = `/api/Predictions/Random/${userToken}/${topicName}`;
 
         // call to API
         let result: any = null;
@@ -184,7 +184,7 @@ export class PredictionApiService {
             .pipe(
                 map(
                     response => {
-                        result = result.body;
+                        result = response.body;
                         return result;
                     },
                     error => {

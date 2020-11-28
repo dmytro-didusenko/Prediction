@@ -22,10 +22,12 @@ export class RegisterPageComponent {
 
     register() {
         const userToCreate: UserData = new UserData(
+            0,
             this.firstNameInput.trim() + ' ' + this.lastNameInput,
             this.eMailInput,
             this.organizationInput,
-            this.passwordInput);
+            this.passwordInput,
+            '');
 
         this.APIService.AddUser(userToCreate).subscribe();
         this.router.navigate(['/login']);

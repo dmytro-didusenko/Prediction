@@ -1,8 +1,10 @@
 export class UserData {
     constructor(
-        public UserName: string,
-        public UserEMail: string,
-        public OrganizationName: string,
-        public UserPassword: string
+        public userID: number,
+        public userName: string,
+        public userEMail: string,
+        public organizationName: string,
+        public userPassword: string,
+        public token: string
     ) { }
 }

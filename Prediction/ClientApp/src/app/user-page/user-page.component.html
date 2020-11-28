@@ -1,9 +1,15 @@
-<div class="user_page_container">
+<div class="main_page_container">
     <div class="logo_container">
         <img src="../../assets/images/prediction.png" alt="">
     </div>
-    <select name="businessCategories" [(ngModel)]="topicToChange" (ngModelChange)="GetPredictionsByTopic(topicToChange)">
+    <select name="businessCategories" [(ngModel)]="topicToChange" (ngModelChange)="GetPredictionString(topicToChange)">
         <option selected [ngValue]=""></option>
         <option *ngFor="let topic of topics" [ngValue]="topic">{{topic.topicName}}</option>
     </select>
+
+    <p class="get_prediction_url">{{predictionByURL}}</p>
+
+    <button class="get_prediction_button" (click)="GetPredictionsByTopic(topicToChange)">Отримати передбачення</button>
+
+    <p class="prediction_field" *ngIf="isPrediction">{{predictionToDisplay}}</p>
 </div>

@@ -27,10 +27,12 @@ namespace Prediction.Controllers
         /// <param name="token">Token to define user</param>
         /// <param name="topic">Topic name for predictions</param>
         /// <returns>response statys "Ok" and randon prediction or statys "BadRequest" and error message</returns>
-        [HttpGet("User/{token}/Topic/{topic}")]
-        public IActionResult GetRandomPrediction(int token, string topic)
+        [HttpGet("{token}/{topic}")]
+        public IActionResult GetRandomPrediction(string token, string topic)
         {
-            Topic topicResult = _context.Topics.Where(u => u.UserId.Equals(token)).FirstOrDefault();
+            Topic topicResult = _context.Topics.
+                                        Where(t => t.UserToken.Equals(token) && t.TopicName.Equals(topic))
+                                        .FirstOrDefault();
 
             if (topicResult != null)
             {
@@ -38,11 +40,18 @@ namespace Prediction.Controllers
                                             .Where(pr => pr.TopicId == topicResult.TopicId)
                                             .ToList();
 
-                Random random = new Random();
+                if (predictions != null && predictions.Any())
+                {
+                    Random random = new Random();
 
-                int predictionIndex = random.Next(0, predictions.Count());
+                    int predictionIndex = random.Next(0, predictions.Count());
 
-                return Ok(predictions[predictionIndex]);
+                    return Ok(predictions[predictionIndex]);
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
 
             return BadRequest();

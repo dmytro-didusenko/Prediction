@@ -1,19 +1,53 @@
 @import '../../scss/common';
 
-.logo_container {
-    width: 100%;
+.main_page_container {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
 
-    img {
-        width: 300px;
-        height: 240px;
-        margin-bottom: 25px;
+    .logo_container {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            width: 300px;
+            height: 240px;
+            margin-bottom: 25px;
+        }
+    }
+
+    select {
+        @extend .select_basic;
+        background-image: url("../../assets/svg/select_arrow_down.svg");
+        width: 70%;
+        min-width: 250px;
+        font-size: 18px;
+    }
+
+    .get_prediction_button {
+        @extend .add_item_button;
+        margin-top: 35px;
+    }
+
+    .prediction_field {
+        margin-top: 35px;
+        margin-bottom: 0;
+        font-size: 24px;
+        font-style: italic;
+        font-family: "Comic Sans MS";
+    }
+
+    .get_prediction_url {
+        margin-top: 35px;
+        margin-bottom: 0;
+        width: 70%;
+        min-width: 250px;
+        font-size: 18px;
+        font-style: normal;
+        text-align: center;
+        word-wrap: break-word;
     }
 }
 
-select {
-    @extend .select_basic;
-    background-image: url("../../assets/svg/select_arrow_down.svg");
-}
