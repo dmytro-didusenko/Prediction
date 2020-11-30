@@ -13,7 +13,7 @@ export class PredictionComponent implements OnInit {
     public topics: TopicData[] = [];
     public predictionsFromDB: PredictionData[] = [];
     public topicToChange: TopicData;
-    public predictionsByTopic: PredictionData[];
+    public predictionsByTopic: PredictionData[] = [];
     public predictionsGotFromServer: boolean;
     public openAddPredictionInput = false;
 
@@ -38,8 +38,6 @@ export class PredictionComponent implements OnInit {
     public GetPredictions() {
         this.APIService.GetPredictions().subscribe(data => {
             this.predictionsFromDB = data;
-            this.predictionsByTopic = data;
-            console.log(this.predictionsFromDB);
         });
     }
 
